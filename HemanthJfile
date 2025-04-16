@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Maven-Package') {
             steps {
-                sh 'mvn package'
+                sh 'mvn clean install'
             }
         } 
         stage('Test') {
@@ -27,6 +27,18 @@ pipeline {
                 }
             }
         }
+ stage('docker') {
+            steps {
+              script{
+                  sh 'docker login -u meghanasr -p dckr_pat_nXkHF0UTHYOmOSA0Jn_g4IaLHLk'
+                  sh 'docker build -t mvn:v1 .'
+                  sh 'docker tag mvn:v1 meghanasr/maven:v1'
+                  sh 'docker push meghanasr/maven:v1' 
+              }
+            }
+     }           
+            
+        } 
     }
-}
+
 
