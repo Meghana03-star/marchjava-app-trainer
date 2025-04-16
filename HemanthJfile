@@ -27,7 +27,7 @@ pipeline {
                 }
             }
         }
- stage('docker') {
+         stage('docker') {
             steps {
               script{
                   sh 'docker login -u meghanasr -p dckr_pat_nXkHF0UTHYOmOSA0Jn_g4IaLHLk'
